@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Modificato per garantire che il contenitore occupi almeno l'altezza del viewport */
     background-color: #f0f0f0;
 }
 
@@ -14,30 +14,26 @@ body {
 
 #clickableImage {
     cursor: pointer;
-    max-width: 100%; /* Imposta la larghezza massima all'interno del contenitore */
-    height: auto; /* Per mantenere l'aspetto originale dell'immagine */
+    max-width: 100%;
+    height: auto;
     transform: scale(0.3);
     z-index: 1;
 }
 
-/* Stile per la nuova immagine */
 .styledImage {
     position: absolute;
-    top: 65%; /* Altezza di #clickableImage + 20% */
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.5);
-    max-width: 60%; /* Esempio: Larghezza massima dell'80% del viewport */
-    max-height: 60vh; /* Esempio: Altezza massima dell'80% dell'altezza del viewport */
-    margin-top: 0; /* Nessun margine superiore rispetto a #clickableImage */
+    max-width: 60%;
+    max-height: 60vh;
+    margin-top: 0;
     margin-left: 10px;
-    opacity: 0; /* L'immagine è inizialmente invisibile */
+    opacity: 0;
     z-index: 2;
-
-    /* Animazione di apparizione dal basso */
     animation: appearFromBottom 1s ease-out forwards;
 }
 
-/* Definizione dell'animazione */
 @keyframes appearFromBottom {
     from {
         transform: translateY(100%) scale(0.5);
@@ -46,5 +42,17 @@ body {
     to {
         transform: translateY(-50%) translateX(-50%) scale(0.5);
         opacity: 1;
+    }
+}
+
+/* Media query per adattare le dimensioni delle immagini su schermi più piccoli */
+@media (max-width: 768px) {
+    #clickableImage {
+        transform: scale(0.2);
+    }
+
+    .styledImage {
+        max-width: 80%;
+        max-height: 80vh;
     }
 }
