@@ -1,168 +1,78 @@
-/*-----------------------------------------------------------------
------------------------------------------------------------------
------------------------ GLOBAL VARIABLES ------------------------
------------------------------------------------------------------
------------------------------------------------------------------*/
+var $slider = $('.slideshow .slider'),
+  maxItems = $('.item', $slider).length,
+  dragging = false,
+  tracking,
+  rightTracking;
 
+$sliderRight = $('.slideshow').clone().addClass('slideshow-right').appendTo($('.split-slideshow'));
 
-// Used to add a numeric id on slide creation to let us target the element later  
-var slideIndex = 0;
-// Tells us which slide we are on
-var currentSlideIndex = 0;
-// An Array to hold all the slides
-var slideArray = [];
-
-
-/*-----------------------------------------------------------------
------------------------------------------------------------------
------------------------ THE TEMPLATE ---------------------------
------------------------------------------------------------------
------------------------------------------------------------------*/
-
-
-
-// Template for creating a custom Slide object
-function Slide(title, subtitle, background, link ) {
-	this.title = title;
-	this.subtitle = subtitle;
-	this.background = background;
-	this.link = link;
-	// we need an id to target later using getElementById
-	this.id = "slide" + slideIndex;
-	// Add one to the index for the next slide number
-	slideIndex++;
-	// Add this Slide to our array
-	slideArray.push(this);
+rightItems = $('.item', $sliderRight).toArray();
+reverseItems = rightItems.reverse();
+$('.slider', $sliderRight).html('');
+for (i = 0; i < maxItems; i++) {
+  $(reverseItems[i]).appendTo($('.slider', $sliderRight));
 }
 
+$slider.addClass('slideshow-left');
+$('.slideshow-left').slick({
+  vertical: true,
+  verticalSwiping: true,
+  arrows: false,
+  infinite: true,
+  dots: true,
+  speed: 1000,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
 
+  if (currentSlide > nextSlide && nextSlide == 0 && currentSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', -1);
+    $('.slideshow-text').slick('slickGoTo', maxItems);
+  } else if (currentSlide < nextSlide && currentSlide == 0 && nextSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems);
+    $('.slideshow-text').slick('slickGoTo', -1);
+  } else {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems - 1 - nextSlide);
+    $('.slideshow-text').slick('slickGoTo', nextSlide);
+  }
+}).on("mousewheel", function(event) {
+  event.preventDefault();
+  if (event.deltaX > 0 || event.deltaY < 0) {
+    $(this).slick('slickNext');
+  } else if (event.deltaX < 0 || event.deltaY > 0) {
+    $(this).slick('slickPrev');
+  };
+}).on('mousedown touchstart', function(){
+  dragging = true;
+  tracking = $('.slick-track', $slider).css('transform');
+  tracking = parseInt(tracking.split(',')[5]);
+  rightTracking = $('.slideshow-right .slick-track').css('transform');
+  rightTracking = parseInt(rightTracking.split(',')[5]);
+}).on('mousemove touchmove', function(){
+  if (dragging) {
+    newTracking = $('.slideshow-left .slick-track').css('transform');
+    newTracking = parseInt(newTracking.split(',')[5]);
+    diffTracking = newTracking - tracking;
+    $('.slideshow-right .slick-track').css({'transform': 'matrix(1, 0, 0, 1, 0, ' + (rightTracking - diffTracking) + ')'});
+  }
+}).on('mouseleave touchend mouseup', function(){
+  dragging = false;
+});
 
-/*-----------------------------------------------------------------
------------------------------------------------------------------
------------------------ SLIDE CREATION ---------------------------
------------------------------------------------------------------
------------------------------------------------------------------*/
+$('.slideshow-right .slider').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 950,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+  initialSlide: maxItems - 1
+});
+$('.slideshow-text').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 900,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+});
 
-
-// Creating our slide objects, you can make as many as you want
-
-var walkingDead = new Slide(
-	"The Walking Dead", 
-	"A show about fighting zombies", 
-	"https://source.unsplash.com/450x450/?girl", 
-	"#"
-);
-
-var bigBang = new Slide(
-	"The Big Bang Theory", 
-	"A show about Sheldon", 
-	"https://source.unsplash.com/450x450/?cat", 
-	"#"
-);
-
-var LastMan = new Slide(
-	"The Last Man on Earth", 
-	"A show about loneliness", 
-	"https://source.unsplash.com/450x450/?tech", 
-	"#"
-);
-
-
-
-/*-----------------------------------------------------------------
------------------------------------------------------------------
------------------------ ADD TO WEB PAGE ---------------------------
------------------------------------------------------------------
------------------------------------------------------------------*/
-
-
-
-function buildSlider(){
-	// A variable to hold all our HTML
-	var myHTML;
-	
-	// Go through the Array and add the code to our HTML
-	for(var i = 0; i < slideArray.length; i++) {
-		
-		myHTML += "<div id='" + slideArray[i].id + 
-		"' class='singleSlide' style='background-image:url(" + slideArray[i].background + ");'>" + 
-		"<div class='slideOverlay'>" + 
-		"<h1>" + slideArray[i].title + "</h1>" +
-		"<h4>" + slideArray[i].subtitle + "</h4>" +
-		"<a href='" + slideArray[i].link + "' target='_blank'>Open Link</a>" +
-		"</div>" +
-		"</div>";	
-		
-	}
-	
-	// Print our HTML to the web page
-	document.getElementById("mySlider").innerHTML = myHTML;
-		
-	// Display the first slide
-	document.getElementById("slide" + currentSlideIndex).style.left = 0;
-
-}
-
-// Create our slider
-buildSlider();
-
-
-
-
-
-/*-----------------------------------------------------------------
------------------------------------------------------------------
------------------------ SLIDER CONTROLS ---------------------------
------------------------------------------------------------------
------------------------------------------------------------------*/
-
-
-
-// Navigates to the previous slide in the list
-function prevSlide(){
-	// Figure out what the previous slide is
-	var nextSlideIndex;
-	// If we are at zero go to the last slide in the list
-	if (currentSlideIndex === 0 ) {
-		nextSlideIndex = slideArray.length - 1;
-	} else {
-		// Otherwise the next one is this slide minus 1
-		nextSlideIndex = currentSlideIndex - 1;
-	}	
-	
-	// Setup the next slide and current slide for animations
-	document.getElementById("slide" + nextSlideIndex).style.left = "-100%";
-	document.getElementById("slide" + currentSlideIndex).style.left = 0;
-	
-	// Add the appropriate animation class to the slide
-	document.getElementById("slide" + nextSlideIndex).setAttribute("class", "singleSlide slideInLeft");
-	document.getElementById("slide" + currentSlideIndex).setAttribute("class", "singleSlide slideOutRight");
-	
-	// Set current slide to the new current slide
-	currentSlideIndex = nextSlideIndex;
-}
-
-
-// Navigates to the next slide in the list
-function nextSlide(){
-	// Figure out what the next slide is
-	var nextSlideIndex;
-	// If we are at the last slide the next one is the first (zero based)
-	if (currentSlideIndex === (slideArray.length - 1) ) {
-		nextSlideIndex = 0;
-	} else {
-		// Otherwise the next slide is the current one plus 1
-		nextSlideIndex = currentSlideIndex + 1;
-	}	
-	
-	// Setup the next slide and current slide for animations
-	document.getElementById("slide" + nextSlideIndex).style.left = "100%";
-	document.getElementById("slide" + currentSlideIndex).style.left = 0;
-	
-	// Add the appropriate animation class to the slide
-	document.getElementById("slide" + nextSlideIndex).setAttribute("class", "singleSlide slideInRight");
-	document.getElementById("slide" + currentSlideIndex).setAttribute("class", "singleSlide slideOutLeft");
-	
-	// Set current slide to the new current slide
-	currentSlideIndex = nextSlideIndex;
-}
