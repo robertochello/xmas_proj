@@ -1,21 +1,6 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
+// Aggiungi l'evento di click all'immagine
+document.getElementById('clickableImage').addEventListener('click', function() {
+    // Reindirizza alla pagina home.html
+    window.location.href = 'home.html';
+});
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-// Mostra la prima slide all'avvio
-showSlide(currentSlide);
