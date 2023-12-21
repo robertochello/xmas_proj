@@ -18,6 +18,7 @@ body {
     height: auto;
     transform: scale(0.3);
     z-index: 1;
+    transition: transform 0.5s ease-out;
 }
 
 .styledImage {
@@ -28,7 +29,7 @@ body {
     max-width: 60%;
     max-height: 60vh;
     margin-top: 0;
-    margin-left: 10px;
+    margin-left: 0px;
     opacity: 0;
     z-index: 2;
     animation: appearFromBottom 1s ease-out forwards;
