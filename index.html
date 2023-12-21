@@ -1,82 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Pop</title>
-</head>
-
-<body>
-
-  <main>
-    <ul class='slider'>
-      <li class='item' style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
-        <div class='content'>
-          <h2 class='title'>"Lossless Youths"</h2>
-          <p class='description'> Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-          praesentium nisi. Id laboriosam ipsam enim.  </p>
-          <button>Read More</button>
-        </div>
-      </li>
-      <li class='item' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
-        <div class='content'>
-          <h2 class='title'>"Estrange Bond"</h2>
-          <p class='description'> Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-          praesentium nisi. Id laboriosam ipsam enim.  </p>
-          <button>Read More</button>
-        </div>
-      </li>
-      <li class='item' style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
-        <div class='content'>
-          <h2 class='title'>"The Gate Keeper"</h2>
-          <p class='description'> Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-          praesentium nisi. Id laboriosam ipsam enim.  </p>
-          <button>Read More</button>
-        </div>
-      </li>
-      <li class='item' style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
-        <div class='content'>
-          <h2 class='title'>"Last Trace Of Us"</h2>
-          <p class='description'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-          </p>
-          <button>Read More</button>
-        </div>
-      </li>
-      <li class='item' style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
-        <div class='content'>
-          <h2 class='title'>"Urban Decay"</h2>
-          <p class='description'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-          </p>
-          <button>Read More</button>
-        </div>
-      </li>
-      <li class='item' style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
-        <div class='content'>
-          <h2 class='title'>"The Migration"</h2>
-          <p class='description'> Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-          praesentium nisi. Id laboriosam ipsam enim.  </p>
-          <button>Read More</button>
-        </div>
-      </li>
-    </ul>
-    <nav class='nav'>
-      <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
-      <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
-    </nav>
-  </main>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="CodeHim">
+    <title>Responsive Image Slider with Text Example</title>
+    
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css">
+	<!-- Demo CSS (No need to include it into your project) -->
+	<!-- <link rel="stylesheet" href="css/demo.css"> -->
   
+  </head>
+  <body>
+ <header class="intro">
+ <h1>Responsive Image Slider with Text Example</h1>
+ <p>Pure JavaScript Image Slider.</p>
 
-    <script type="module" src="index.js"></script>
-    <script nomodule src="index.js"></script>
-
-</body>
-
+ <!-- <div class="action">
+ <a href="https://www.codehim.com/carousel/responsive-image-slider-with-text/" title="Back to download and tutorial page" class="btn back">Back to Tutorial</a>
+ </div> -->
+ </header>
+  
+      
+ <main>
+     <!-- Start DEMO HTML (Use the following code into your project)-->
+ <div id="mySlider"></div>
+		<div id="sliderNav">
+			<div id="sliderPrev" onclick="prevSlide();"><i class="fa fa-chevron-left"></i></div>
+			<div id="sliderNext" onclick="nextSlide();"><i class="fa fa-chevron-right"></i></div>
+		</div>    
+     <!-- END EDMO HTML (Happy Coding!)-->
+ </main>
+ 
+      
+  <!-- <footer class="credit">Author: Lawrence Weiss - Distributed By: <a title="Awesome web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer> -->
+  
+  <!-- Script JS -->
+  <script src="./js/script.js"></script>
+   
+  </body>
 </html>
