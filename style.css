@@ -17,4 +17,36 @@ body {
     max-width: 100%; /* Imposta la larghezza massima all'interno del contenitore */
     height: auto; /* Per mantenere l'aspetto originale dell'immagine */
     transform: scale(0.3);
+    z-index: 1;
+}
+
+/* Stile per la nuova immagine */
+.styledImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    max-width: 60%; /* Esempio: Larghezza massima dell'80% del viewport */
+    max-height: 60vh; /* Esempio: Altezza massima dell'80% dell'altezza del viewport */
+    margin-top: 120px; 
+    margin-left: 10px;
+    opacity: 0; /* L'immagine è inizialmente invisibile */
+    z-index: 2;
+
+    /* Animazione di apparizione dal basso */
+    animation: appearFromBottom 1s ease-out forwards;
+}
+
+
+
+/* Definizione dell'animazione */
+@keyframes appearFromBottom {
+    from {
+        transform: translateY(100%) scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-50%) translateX(-50%) scale(0.5);
+        opacity: 1;
+    }
 }
