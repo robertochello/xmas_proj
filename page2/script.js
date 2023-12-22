@@ -21,7 +21,7 @@
     // if it is set to 1 (instead of 0) it is because the first image is styled when the page loads
       var images          = document.getElementById('slideshow').getElementsByTagName('img'),
           numberOfImages  = images.length,
-          i               = 1;
+          i               = 0;
     
       function kenBurns() {
       if(i==numberOfImages){ i = 0;}
