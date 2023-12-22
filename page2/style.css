@@ -30,16 +30,13 @@
  }
  
 /* SLIDES */
-.CSSgal .slider > * {
+.CSSgal .slider > img {
    font-size: 1rem;
    display: inline-block;
    white-space: normal;
    vertical-align: top;
    height: 100%;
    width: 100%;
-   background: none 50% no-repeat;
-   background-size: contain; /* Imposta la dimensione dell'immagine in modo che si adatti completamente al contenitore */
-   background-position: center; /* Imposta la posizione dell'immagine al centro */
    max-width: 100%; /* Rendi la galleria responsive */
  }
  
@@ -55,16 +52,6 @@
  #s9:target ~ .slider { background-image: url('images/16.JPG'); }
  
 
- /* Aggiungi regole per ciascuna immagine */
-#s1:target ~ .slider { background-image: url('images/6.JPG'); }
-#s2:target ~ .slider { background-image: url('images/7.JPG'); }
-#s3:target ~ .slider { background-image: url('images/9.JPG'); }
-#s4:target ~ .slider { background-image: url('images/10.JPG'); }
-#s5:target ~ .slider { background-image: url('images/11.JPG'); }
-#s6:target ~ .slider { background-image: url('images/12.JPG'); }
-#s7:target ~ .slider { background-image: url('images/13.JPG'); }
-#s8:target ~ .slider { background-image: url('images/14.JPG'); }
-#s9:target ~ .slider { background-image: url('images/16.JPG'); }
  
  
  /* PREV/NEXT, CONTAINERS & ANCHORS */
