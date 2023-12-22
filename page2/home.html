@@ -65,30 +65,34 @@
         }
 
         .overlay p {
-            font-size: 20px;
+            font-size: 24px;
             margin-top: 10px; /* Riduci la distanza dal basso dell'immagine */
-            color: white; /* Cambia il colore del testo a nero */
+            color: white; /* Cambia il colore del testo a bianco */
             position: absolute;
             bottom: 10px; /* Posiziona il testo nella parte inferiore */
             width: 100%;
             text-align: center;
+        }
+
+        .overlay span {
+            display: block;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
     <div class="gallery">
-        <div onclick="showOverlay('images/10.JPG', 'Test su Immagine 1')"><img src="images/10.JPG" alt="Immagine 1"></div>
-        <div onclick="showOverlay('images/11.JPG', 'Test su Immagine 2')"><img src="images/11.JPG" alt="Immagine 2"></div>
-        <div onclick="showOverlay('images/12.JPG', 'Test su Immagine 3')"><img src="images/12.JPG" alt="Immagine 3"></div>
-        <div onclick="showOverlay('images/13.JPG', 'Test su Immagine 4')"><img src="images/13.JPG" alt="Immagine 4"></div>
-        <div onclick="showOverlay('images/14.JPG', 'Test su Immagine 5')"><img src="images/14.JPG" alt="Immagine 5"></div>
-        <div onclick="showOverlay('images/16.JPG', 'Test su Immagine 6')"><img src="images/16.JPG" alt="Immagine 6"></div>
-        <div onclick="showOverlay('images/6.JPG', 'Test su Immagine 7')"><img src="images/6.JPG" alt="Immagine 7"></div>
-        <div onclick="showOverlay('images/7.JPG', 'Test su Immagine 8')"><img src="images/7.JPG" alt="Immagine 8"></div>
-        <div onclick="showOverlay('images/9.JPG', 'Test su Immagine 9')"><img src="images/9.JPG" alt="Immagine 9"></div>
+        <div onclick="showOverlay('images/10.JPG', '4 Maggio 2023 | 23.02', 'quando ho vinto lo scudetto')"><img src="images/10.JPG" alt="Immagine 1"></div>
+        <div onclick="showOverlay('images/11.JPG', '28 Luglio 2023 | 10.28','quando due giorni insieme sono passati troppo velocemente')"><img src="images/11.JPG" alt="Immagine 2"></div>
+        <div onclick="showOverlay('images/12.JPG', '17 Settembre 2023 | 19.10', 'SANTO LIBERATO!')"><img src="images/12.JPG" alt="Immagine 3"></div>
+        <div onclick="showOverlay('images/13.JPG', '30 Aprile 2023 | 16.04', 'quando mi hanno visto con la ragazza con il SUV')"><img src="images/13.JPG" alt="Immagine 4"></div>
+        <div onclick="showOverlay('images/14.JPG', '5 Novembre 2023 | 23.35', 'quando ho conosciuto Lidia')"><img src="images/14.JPG" alt="Immagine 5"></div>
+        <div onclick="showOverlay('images/16.JPG', '30 Luglio 2023 | 18.36', 'quando ZANNIIIIII')"><img src="images/16.JPG" alt="Immagine 6"></div>
+        <div onclick="showOverlay('images/6.JPG', '16 Giugno 2023 | 22.08', 'quando siamo andati alla prima festa da fidanzati')"><img src="images/6.JPG" alt="Immagine 7"></div>
+        <div onclick="showOverlay('images/7.JPG', '29 Giugno 2023 | 01.31', 'quanto sei bella')"><img src="images/7.JPG" alt="Immagine 8"></div>
+        <div onclick="showOverlay('images/9.JPG', '13 Agosto 2023 | 23.40', 'quando faceva caldo e sudavo ma non era importante')"><img src="images/9.JPG" alt="Immagine 9"></div>
     </div>
-    
 
     <div class="overlay" onclick="hideOverlay()">
         <img id="overlayImage" src="" alt="Immagine Ingrandita">
@@ -96,13 +100,13 @@
     </div>
 
     <script>
-        function showOverlay(imageSrc, text) {
+        function showOverlay(imageSrc, text, subtext) {
             const overlay = document.querySelector('.overlay');
             const overlayImage = document.getElementById('overlayImage');
             const overlayText = document.getElementById('overlayText');
 
             overlayImage.src = imageSrc;
-            overlayText.textContent = text;
+            overlayText.innerHTML = `${text}<span>${subtext}</span>`;
 
             overlay.classList.add('active');
         }
