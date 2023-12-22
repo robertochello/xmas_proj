@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>POP</title>
-        <link rel="stylesheet" href="style.css">
-        <!-- <script src="script.js"></script> -->
-    </head>
-    <body>
-        <div class="CSSgal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria Immagini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-            <!-- Don't wrap targets in parent -->
-            <s id="s1"></s> 
-            <s id="s2"></s>
-            <s id="s3"></s>
-            <s id="s4"></s>
-            <s id="s5"></s>
-            <s id="s6"></s>
-            <s id="s7"></s>
-            <s id="s8"></s>
-            <s id="s9"></s>
-          
-            <div class="slider">
-                <div>
-                    <img src="images/6.JPG">
-                </div>
-                <div>
-                    <img src="images/7.JPG">
-                </div>
-                <div>
-                    <img src="images/9.JPG">
-                </div>
-                <div>
-                    <img src="images/10.JPG">
-                </div>
-                <div>
-                    <img src="images/11.JPG">
-                </div>
-                <div>
-                    <img src="images/12.JPG">
-                </div>
-                <div>
-                    <img src="images/13.JPG">
-                </div>
-                <div>
-                    <img src="images/14.JPG">
-                </div>
-                <div>
-                    <img src="images/16.JPG">
-                </div>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
 
-            </div>
-            
-            <div class="prevNext">
-                <div><a href="#s9"></a><a href="#s2"></a></div>
-                <div><a href="#s1"></a><a href="#s3"></a></div>
-                <div><a href="#s2"></a><a href="#s4"></a></div>
-                <div><a href="#s3"></a><a href="#s5"></a></div>
-                <div><a href="#s4"></a><a href="#s6"></a></div>
-                <div><a href="#s5"></a><a href="#s7"></a></div>
-                <div><a href="#s6"></a><a href="#s8"></a></div>
-                <div><a href="#s7"></a><a href="#s9"></a></div>
-                <div><a href="#s8"></a><a href="#s1"></a></div>
-              </div>
-            
-            <div class="bullets">
-                <a href="#s1">1</a>
-                <a href="#s2">2</a>
-                <a href="#s3">3</a>
-                <a href="#s4">4</a>
-                <!-- Aggiungi altri link numerati per le nuove slide -->
-                <a href="#s5">5</a>
-                <a href="#s6">6</a>
-                <a href="#s7">7</a>
-                <a href="#s8">8</a>
-                <a href="#s9">9</a>
-            </div>
-          
-          </div>
-    </body>
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .navigation button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery">
+    <div><img src="images/10.JPG"Immagine 1"></div>
+    <div><img src="images/11.JPG"Immagine 2"></div>
+    <div><img src="images/12.JPG" alt="Immagine 3"></div>
+    <div><img src="images/13.JPG" alt="Immagine 4"></div>
+    <div><img src="images/14.JPG" alt="Immagine 5"></div>
+    <div><img src="images/16.JPG" alt="Immagine 6"></div>
+    <div><img src="images/6.JPG" alt="Immagine 7"></div>
+    <div><img src="images/7.JPG" alt="Immagine 8"></div>
+    <div><img src="images/9.JPG" alt="Immagine 9"></div>
+</div>
+
+<div class="navigation">
+    <button onclick="changeImage(-1)">Precedente</button>
+    <button onclick="changeImage(1)">Successiva</button>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.gallery img');
+
+    function changeImage(step) {
+        currentIndex += step;
+
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+
+        updateGallery();
+    }
+
+    function updateGallery() {
+        images.forEach((image, index) => {
+            if (index === currentIndex) {
+                image.style.display = 'block';
+            } else {
+                image.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
 </html>

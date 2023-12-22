@@ -20,6 +20,9 @@ body {
 .slider img {
    width: 100%;
    height: auto;
+   max-width: 100%; /* Aggiunto per assicurare che le immagini non superino la larghezza del loro contenitore */
+   display: block; /* Rimuove il margine inferiore in alcune situazioni */
+   margin: 0 auto; /* Centra l'immagine */
 }
 
 .prevNext {
