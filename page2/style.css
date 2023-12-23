@@ -13,8 +13,8 @@ body {
 }
 
 .slider div {
-   flex: 0 0 300px; /* Larghezza fissa del div */
-   height: 200px; /* Altezza fissa del div */
+   flex: 0 0 50px; /* Larghezza fissa del div */
+   height: 50px; /* Altezza fissa del div */
    box-sizing: border-box;
 }
 
