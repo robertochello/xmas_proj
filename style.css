@@ -22,7 +22,7 @@ body {
 
 .styledImage {
     position: absolute;
-    top: 80%;
+    top: calc(80% + 10px); /* Aggiunto un offset di 10px per separare le due immagini */
     left: 50%;
     transform: translate(-50%, -50%) scale(0.5);
     max-width: 60%;
@@ -33,6 +33,7 @@ body {
     z-index: 2;
     animation: appearFromBottom 1s ease-out forwards;
 }
+
 
 @keyframes appearFromBottom {
     from {
