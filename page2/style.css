@@ -13,18 +13,19 @@ body {
 }
 
 .slider div {
-   flex: 0 0 100%;
+   flex: 0 0 300px; /* Larghezza fissa del div */
+   height: 200px; /* Altezza fissa del div */
    box-sizing: border-box;
-   height: 300px;
 }
 
 .slider img {
    width: 100%;
-   height: auto;
-   max-width: 100%; /* Aggiunto per assicurare che le immagini non superino la larghezza del loro contenitore */
-   display: block; /* Rimuove il margine inferiore in alcune situazioni */
-   margin: 0 auto; /* Centra l'immagine */
+   height: 100%; /* Altezza del 100% per riempire completamente il div */
+   object-fit: cover; /* Ritaglia l'immagine per adattarla alle dimensioni del div senza deformarla */
+   display: block;
+   margin: 0 auto;
 }
+
 
 .prevNext {
    position: absolute;
