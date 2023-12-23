@@ -58,7 +58,7 @@ body {
 
 @media (max-width: 600px) {
     #clickableImage {
-        transform: scale(0.1);
+        transform: scale(0.4);
     }
 
     .styledImage {
