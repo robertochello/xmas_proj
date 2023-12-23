@@ -20,3 +20,5 @@ window.onload = function () {
         document.body.appendChild(secondImage);
     }, 2000); // Esempio di ritardo di 2 secondi (2000 millisecondi)
 };
+
+
